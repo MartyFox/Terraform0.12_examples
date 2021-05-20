@@ -20,7 +20,8 @@ locals {
     ],
   }
 
-  # Create a list of objects pairing each service endpoint and account in its list
+  # Using nested for loops, create a list of objects pairing each service endpoint and account in its list
+  # The first for loop gives us the key (endpoint) and the nested for loop gives us the values within the list (accounts)
   endpointaccounts_tuple = flatten([
     for endpoint, accounts in local.service_endpoints : [
       for account in accounts : {
@@ -42,6 +43,7 @@ locals {
   }
 
   # Create a list of tuples with maps pairing each service endpoint and account in its list with a key made up of endpoint-account
+  # The first for loop gives us the key (endpoint) and the nested for loop gives us the values within the list (accounts)
   endpointaccounts_tuple_maps = flatten([
     for endpoint, accounts in local.service_endpoints : [
       for account in accounts : {
