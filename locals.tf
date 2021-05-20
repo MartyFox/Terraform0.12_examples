@@ -58,7 +58,7 @@ locals {
   # Convert the list tuple from local.endpointaccounts_tuple_maps into a map of maps that can be used in a for_each loop (the below could also be used directly in the for_each )
   # for_each = {
   #   for item in local.endpointaccounts_tuple :
-  #   "${item.endpoint}_${item.account}" => item
+  #    keys(item)[0] => values(item)[0]
   # }
   #
   function_endpoint_map = { for item in local.endpointaccounts_tuple_maps: 
